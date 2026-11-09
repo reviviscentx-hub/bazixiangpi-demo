@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>顺顺 · 范山道令八字详批</title>
+<meta name="description" content="沉浸剧情式八字详批：范山道令以节气定盘，四柱五行免费看，大运流年、正缘财星、开运处方收进一卷完整命书。">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#0a0505; color:#e8ddd0; font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif; min-height:100vh; }
+  .gate { min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:32px; background:radial-gradient(1200px 600px at 50% -10%, #3d120e 0%, #0a0505 60%); }
+  .brand { font-size:13px; letter-spacing:6px; color:#c7a06a; margin-bottom:18px; }
+  h1 { font-size:34px; font-weight:700; letter-spacing:2px; margin-bottom:14px; }
+  .sub { font-size:14px; line-height:1.9; color:#a89880; max-width:300px; margin-bottom:36px; }
+  .cta { display:inline-block; background:linear-gradient(180deg,#8f2828,#6b1a1a); color:#f5e9d5; border:1px solid #b23e2e;
+         font-size:17px; padding:16px 44px; border-radius:999px; cursor:pointer; letter-spacing:2px; box-shadow:0 6px 24px rgba(178,62,46,.35); }
+  .cta:active { transform:scale(.98); }
+  .note { margin-top:26px; font-size:11px; color:#6b5c4a; line-height:1.8; }
+  .app { position:fixed; inset:0; display:none; background:#000; }
+  .app.on { display:block; }
+  iframe { width:100%; height:100%; border:0; display:block; }
+</style>
+</head>
+<body>
+<div class="gate" id="gate">
+  <div class="brand">顺顺 SHUNSHUN</div>
+  <h1>范山道令 · 八字详批</h1>
+  <p class="sub">夜半神堂，命盘摊开。<br>四柱五行免费看，完整命书逐卷为你解读感情、事业与财运。</p>
+  <button class="cta" id="start">现在进入神堂</button>
+  <p class="note">本演示仅供内部产品研究 · 结果仅供参考，不构成任何决策建议</p>
+</div>
+<div class="app" id="app">
+  <iframe id="mod" src="modules/mzmudang-fate/index.html" title="module" allow="autoplay"></iframe>
+</div>
+<script src="lib/bazi-inline.js"></script>
+<script src="host.js"></script>
+</body>
+</html>
