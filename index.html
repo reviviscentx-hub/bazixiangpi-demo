@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>顺顺 · 范山道令八字详批</title>
+<meta name="description" content="沉浸剧情式八字详批：范山道令以节气定盘，四柱五行免费看，大运流年、正缘财星、开运处方收进一卷完整命书。">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#0a0505; color:#e8ddd0; font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif; min-height:100vh; overflow-x:hidden; }
+
+  /* —— 神堂场景：烛光呼吸 + 底部余烬 —— */
+  .gate { position:relative; min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:32px 28px; overflow:hidden;
+          background:radial-gradient(1200px 640px at 50% -12%, #3d120e 0%, #180807 46%, #0a0505 72%); }
+  .gate::before { content:''; position:absolute; inset:-20%; background:radial-gradient(520px 300px at 50% 4%, rgba(178,62,46,.20), transparent 68%); animation:candle 5.2s ease-in-out infinite; pointer-events:none; }
+  .gate::after  { content:''; position:absolute; left:0; right:0; bottom:0; height:38vh; background:radial-gradient(700px 320px at 50% 108%, rgba(120,28,20,.16), transparent 70%); pointer-events:none; }
+  @keyframes candle { 0%,100% { opacity:.75; } 42% { opacity:1; } 60% { opacity:.62; } }
+
+  /* —— 香火浮尘 —— */
+  .ember { position:absolute; bottom:-6px; width:3px; height:3px; border-radius:50%; background:rgba(224,168,105,.85);
+           box-shadow:0 0 6px 1px rgba(224,168,105,.5); opacity:0; animation:rise linear infinite; pointer-events:none; }
+  .ember:nth-child(1) { left:12%; animation-duration:11s; animation-delay:0s; }
+  .ember:nth-child(2) { left:22%; animation-duration:14s; animation-delay:2.4s; }
+  .ember:nth-child(3) { left:34%; animation-duration:10s; animation-delay:5s; }
+  .ember:nth-child(4) { left:46%; animation-duration:16s; animation-delay:1.2s; }
+  .ember:nth-child(5) { left:57%; animation-duration:12s; animation-delay:3.6s; }
+  .ember:nth-child(6) { left:66%; animation-duration:15s; animation-delay:6.8s; }
+  .ember:nth-child(7) { left:76%; animation-duration:11s; animation-delay:4.4s; }
+  .ember:nth-child(8) { left:85%; animation-duration:13s; animation-delay:.8s; }
+  .ember:nth-child(9) { left:92%; animation-duration:17s; animation-delay:5.8s; }
+  .ember:nth-child(10){ left:8%;  animation-duration:15s; animation-delay:7.6s; }
+  @keyframes rise { 0% { transform:translateY(0) translateX(0); opacity:0; } 12% { opacity:.85; } 70% { opacity:.45; } 100% { transform:translateY(-78vh) translateX(14px); opacity:0; } }
+
+  /* —— 命盘罗盘：天干地支双环反向旋转 —— */
+  .wheel { position:absolute; top:44px; left:50%; transform:translateX(-50%); width:330px; height:330px; opacity:.34; pointer-events:none; }
+  .wheel svg { width:100%; height:100%; }
+  .ring-a { animation:spin 96s linear infinite; transform-origin:50% 50%; }
+  .ring-b { animation:spin 140s linear infinite reverse; transform-origin:50% 50%; }
+  @keyframes spin { to { transform:rotate(360deg); } }
+
+  /* —— 内容编排（错峰入场）—— */
+  .stack { position:relative; z-index:2; display:flex; flex-direction:column; align-items:center; }
+  .fadein { opacity:0; transform:translateY(14px); animation:enter .9s cubic-bezier(.2,.7,.3,1) forwards; }
+  @keyframes enter { to { opacity:1; transform:translateY(0); } }
+  .brand   { font-size:13px; letter-spacing:6px; color:#c7a06a; margin-bottom:20px; animation-delay:.1s; }
+  .brand b { color:#e8c68a; font-weight:600; }
+
+  /* —— 主标题 + 朱砂印玺 —— */
+  .title-wrap { position:relative; margin-bottom:16px; animation-delay:.3s; }
+  h1 { font-size:34px; font-weight:700; letter-spacing:2px; margin-bottom:0;
+       background:linear-gradient(180deg,#f2e2c4 12%, #d9b06a 55%, #a9753a 100%); -webkit-background-clip:text; background-clip:text; color:transparent;
+       text-shadow:0 0 26px rgba(210,140,70,.22); }
+  .seal { position:absolute; right:-6px; top:-56px; width:42px; height:100px; border:2px solid rgba(178,62,46,.85); border-radius:5px;
+          display:flex; align-items:center; justify-content:center; transform:rotate(3deg);
+          background:linear-gradient(160deg, rgba(178,62,46,.14), rgba(178,62,46,.05));
+          box-shadow:0 0 14px rgba(178,62,46,.25), inset 0 0 8px rgba(178,62,46,.18);
+          writing-mode:vertical-rl; font-size:15px; letter-spacing:5px; color:#e05c46; font-weight:600;
+          padding:8px 4px; animation:sealStamp .7s cubic-bezier(.3,1.6,.5,1) 1.1s both; }
+  @keyframes sealStamp { 0% { opacity:0; transform:rotate(3deg) scale(1.6); } 62% { opacity:1; transform:rotate(3deg) scale(.94); } 100% { opacity:1; transform:rotate(3deg) scale(1); } }
+
+  .sub { font-size:14px; line-height:2.0; color:#a89880; max-width:312px; margin:6px 0 14px; animation-delay:.5s; }
+  .quote { font-size:13px; line-height:1.9; color:#c7a06a; max-width:300px; margin-bottom:40px; font-style:normal; letter-spacing:.5px; animation-delay:.7s; }
+  .quote::before, .quote::after { color:#8f6a3a; }
+
+  /* —— 入堂按钮：金环呼吸 —— */
+  .cta-wrap { position:relative; animation-delay:.9s; }
+  .cta { position:relative; display:inline-block; background:linear-gradient(180deg,#8f2828,#6b1a1a); color:#f5e9d5; border:1px solid #b23e2e;
+         font-size:17px; padding:16px 46px; border-radius:999px; cursor:pointer; letter-spacing:3px; box-shadow:0 6px 26px rgba(178,62,46,.38);
+         transition:transform .15s ease; }
+  .cta:active { transform:scale(.97); }
+  .cta::after { content:''; position:absolute; inset:-7px; border-radius:999px; border:1px solid rgba(211,150,90,.5); animation:halo 2.8s ease-in-out infinite; pointer-events:none; }
+  @keyframes halo { 0%,100% { opacity:.25; transform:scale(1); } 50% { opacity:.85; transform:scale(1.045); } }
+  .cta-hint { margin-top:14px; font-size:11px; color:#7a6a54; letter-spacing:2px; animation-delay:1.15s; }
+  .cta-hint .liu { color:#c7a06a; }
+
+  /* —— 五行符 —— */
+  .wuxing { display:flex; gap:14px; margin-top:26px; align-items:center; animation-delay:1.25s; }
+  .wx { width:7px; height:7px; border-radius:50%; opacity:.7; }
+  .wx.jin  { background:#e3c99a; box-shadow:0 0 6px rgba(227,201,154,.7); }
+  .wx.mu   { background:#7fae6a; box-shadow:0 0 6px rgba(127,174,106,.6); }
+  .wx.shui { background:#6a9cae; box-shadow:0 0 6px rgba(106,156,174,.6); }
+  .wx.huo  { background:#d4553d; box-shadow:0 0 6px rgba(212,85,61,.7); }
+  .wx.tu   { background:#b98a54; box-shadow:0 0 6px rgba(185,138,84,.6); }
+  .wx-gap  { width:14px; }
+
+  .note { position:relative; z-index:2; margin-top:24px; font-size:11px; color:#6b5c4a; line-height:1.8; animation-delay:1.4s; }
+
+  @media (max-width:375px) { h1 { font-size:29px; } .seal { right:-46px; } .wheel { width:280px; height:280px; top:56px; } }
+  @media (prefers-reduced-motion: reduce) { .ring-a,.ring-b,.ember,.cta::after,.gate::before { animation:none; } .fadein { animation-duration:.01s; animation-delay:0s; } }
+  .app { position:fixed; inset:0; display:none; background:#000; }
+  .app.on { display:block; }
+  iframe { width:100%; height:100%; border:0; display:block; }
+</style>
+</head>
+<body>
+<div class="gate" id="gate">
+  <span class="ember"></span><span class="ember"></span><span class="ember"></span><span class="ember"></span><span class="ember"></span>
+  <span class="ember"></span><span class="ember"></span><span class="ember"></span><span class="ember"></span><span class="ember"></span>
+
+  <!-- 命盘罗盘：外环十二地支 · 内环十天干 -->
+  <div class="wheel" aria-hidden="true">
+    <svg viewBox="0 0 200 200" fill="none">
+      <defs>
+        <path id="ring-zhi"  d="M 100,100 m -78,0 a 78,78 0 1,1 156,0 a 78,78 0 1,1 -156,0"/>
+        <path id="ring-gan"  d="M 100,100 m -58,0 a 58,58 0 1,1 116,0 a 58,58 0 1,1 -116,0"/>
+      </defs>
+      <g class="ring-a" stroke="rgba(199,160,106,.4)">
+        <circle cx="100" cy="100" r="88" stroke-width="0.6"/>
+        <circle cx="100" cy="100" r="68" stroke-width="0.5" stroke-dasharray="2 5"/>
+        <text font-size="8.2" fill="rgba(210,175,120,.8)" letter-spacing="5.2">
+          <textPath href="#ring-zhi">子 · 丑 · 寅 · 卯 · 辰 · 巳 · 午 · 未 · 申 · 酉 · 戌 · 亥</textPath>
+        </text>
+      </g>
+      <g class="ring-b" stroke="rgba(178,62,46,.35)">
+        <circle cx="100" cy="100" r="46" stroke-width="0.5" stroke-dasharray="1 4"/>
+        <text font-size="7.6" fill="rgba(224,120,96,.75)" letter-spacing="6">
+          <textPath href="#ring-gan">甲 · 乙 · 丙 · 丁 · 戊 · 己 · 庚 · 辛 · 壬 · 癸</textPath>
+        </text>
+      </g>
+      <g stroke="rgba(199,160,106,.5)" stroke-width="0.7">
+        <line x1="100" y1="10" x2="100" y2="18"/><line x1="100" y1="182" x2="100" y2="190"/>
+        <line x1="10" y1="100" x2="18" y2="100"/><line x1="182" y1="100" x2="190" y2="100"/>
+      </g>
+      <circle cx="100" cy="100" r="2.4" fill="rgba(211,150,90,.9)"/>
+      <circle cx="100" cy="100" r="7" stroke="rgba(211,150,90,.55)" stroke-width="0.6" fill="none"/>
+    </svg>
+  </div>
+
+  <div class="stack">
+    <div class="brand fadein">顺顺 <b>SHUNSHUN</b></div>
+    <div class="title-wrap fadein">
+      <h1>范山道令 · 八字详批</h1>
+      <div class="seal" aria-hidden="true">范山道令</div>
+    </div>
+    <p class="sub fadein">夜半神堂，命盘摊开。<br>四柱五行免费看，完整命书逐卷为你解读感情、事业与财运。</p>
+    <p class="quote fadein">「生辰留下，命书自现——<br>三卷之内，说尽你的姻缘与前路。」</p>
+    <div class="cta-wrap fadein">
+      <button class="cta" id="start">现在进入神堂</button>
+      <div class="cta-hint fadein">入堂即看 <span class="liu">命盘四柱</span> · 解锁方启 <span class="liu">三卷命书</span></div>
+    </div>
+    <div class="wuxing fadein" aria-hidden="true">
+      <span class="wx jin"></span><span class="wx-gap"></span><span class="wx mu"></span><span class="wx-gap"></span>
+      <span class="wx shui"></span><span class="wx-gap"></span><span class="wx huo"></span><span class="wx-gap"></span><span class="wx tu"></span>
+    </div>
+    <p class="note fadein">本演示仅供内部产品研究 · 结果仅供参考，不构成任何决策建议</p>
+  </div>
+</div>
+<div class="app" id="app">
+  <iframe id="mod" src="modules/mzmudang-fate/index.html" title="module" allow="autoplay"></iframe>
+</div>
+<!-- bazi-inline.js 仅静态构建注入（dist），本地/实时版走 /api/bazi（含 AI 命书） -->
+<script>window.__STATIC_MODE=true;window.__AI_PROXY="https://bazixiangpi-ai-reiviscentx.workers.dev"</script>
+<script src="lib/bazi-inline.js"></script>
+<script src="host.js"></script>
+</body>
+</html>
