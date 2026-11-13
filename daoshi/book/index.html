@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head><script>window.__SS_BASE="/bazixiangpi-demo/daoshi";</script><script src="/bazixiangpi-demo/daoshi/bazixiangpi-demo/daoshi/local/demo-data.js"></script><script src="/bazixiangpi-demo/daoshi/bazixiangpi-demo/daoshi/local/boot.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>命書 · 順順命理館</title>
+<style>
+  :root { --bg:#18191A; --panel:#202124; --gold:#D4AF37; --gold2:#E8C96A; --pink:#F43F6B; --txt:#F5EFE0; --dim:#A09A8C; }
+  * { box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; }
+  html,body { background:var(--bg); color:var(--txt); font-family:-apple-system,'PingFang TC','Microsoft JhengHei',serif; }
+  body { background:
+    radial-gradient(90% 40% at 50% 0%, rgba(212,175,55,.08), transparent 65%),
+    radial-gradient(120% 55% at 50% 100%, rgba(120,20,30,.18), transparent 60%),
+    var(--bg); min-height:100vh; }
+  .wrap { max-width:430px; margin:0 auto; padding:0 18px calc(60px + env(safe-area-inset-bottom)); }
+
+  /* 生成中 */
+  .making { min-height:78vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:16px; }
+  .making .seal { width:72px; height:72px; border-radius:50%; border:2px solid var(--gold); display:flex; align-items:center; justify-content:center;
+    font-size:26px; color:var(--gold); animation:breathe 2.4s ease-in-out infinite; }
+  @keyframes breathe { 0%,100%{ transform:scale(1); box-shadow:0 0 0 0 rgba(212,175,55,.25);} 50%{ transform:scale(1.06); box-shadow:0 0 34px 6px rgba(212,175,55,.18);} }
+  .making h2 { font-size:18px; color:var(--gold2); letter-spacing:2px; }
+  .making p { font-size:13px; color:var(--dim); line-height:1.9; max-width:280px; }
+  .bar { width:220px; height:4px; background:#2E2E30; border-radius:99px; overflow:hidden; }
+  .bar i { display:block; height:100%; width:38%; background:linear-gradient(90deg, var(--gold), var(--gold2)); border-radius:99px; animation:slide 1.8s ease-in-out infinite; }
+  @keyframes slide { 0%{ margin-left:-38%; } 100%{ margin-left:100%; } }
+
+  /* 封面 */
+  .cover { text-align:center; padding:44px 0 30px; }
+  .cover .brand { font-size:12px; letter-spacing:6px; color:var(--dim); }
+  .cover h1 { font-size:26px; color:var(--gold2); margin:14px 0 8px; letter-spacing:2px; line-height:1.5; }
+  .cover .who { font-size:14px; color:var(--txt); opacity:.9; }
+  .cover .meta { font-size:12px; color:var(--dim); margin-top:10px; line-height:1.8; }
+  .cover .rule { width:64px; height:1px; background:linear-gradient(90deg, transparent, var(--gold), transparent); margin:20px auto 0; }
+
+  /* 揭示区（打码兑现） */
+  .reveal { background:linear-gradient(160deg, rgba(212,175,55,.10), rgba(244,63,107,.07)); border:1px solid rgba(212,175,55,.35);
+    border-radius:16px; padding:20px 18px; margin:10px 0 26px; text-align:center; }
+  .reveal .cap { font-size:11px; letter-spacing:3px; color:var(--gold); margin-bottom:10px; }
+  .reveal .big { font-size:24px; font-weight:800; color:var(--gold2); line-height:1.5; }
+  .reveal .sub { font-size:13px; color:var(--txt); opacity:.85; margin-top:10px; line-height:1.9; }
+
+  /* 章节 */
+  .part { margin:34px 0 0; }
+  .part .pn { display:flex; align-items:center; gap:10px; margin-bottom:6px; }
+  .part .pn .num { font-size:12px; color:var(--pink); letter-spacing:2px; font-weight:700; }
+  .part .pn .ln { flex:1; height:1px; background:linear-gradient(90deg, rgba(212,175,55,.5), transparent); }
+  .part h2 { font-size:19px; color:var(--gold2); letter-spacing:1px; margin-bottom:4px; }
+  .part .geju { font-size:13px; color:var(--dim); margin-bottom:14px; }
+  .chap { background:var(--panel); border-radius:14px; padding:18px 16px; margin-bottom:12px; border:1px solid #2A2A2E; }
+  .chap .ct { display:flex; align-items:baseline; gap:8px; margin-bottom:12px; }
+  .chap .ct .no { font-size:11px; color:var(--gold); font-weight:700; letter-spacing:1px; white-space:nowrap; }
+  .chap .ct .ti { font-size:15.5px; font-weight:700; color:var(--txt); line-height:1.5; }
+  .chap .cb { font-size:14px; line-height:2.0; color:var(--txt); opacity:.92; text-align:justify; }
+  .chap .cb p { margin-bottom:10px; }
+  .chap .cb p:last-child { margin-bottom:0; }
+
+  /* 交叉销售 */
+  .upsell { margin:40px 0 10px; padding-top:26px; border-top:1px solid #2E2E30; }
+  .upsell h3 { text-align:center; font-size:17px; color:var(--gold2); margin-bottom:6px; }
+  .upsell .lead { text-align:center; font-size:13px; color:var(--dim); margin-bottom:18px; line-height:1.8; }
+  .up { background:var(--panel); border:1px solid #333; border-radius:14px; padding:16px; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center; }
+  .up .l .n { font-size:15px; font-weight:700; }
+  .up .l .d { font-size:12px; color:var(--dim); margin-top:4px; }
+  .up .r { text-align:right; }
+  .up .r .p { font-size:16px; font-weight:800; color:var(--pink2); }
+  .up .r .go { display:inline-block; margin-top:6px; font-size:12px; color:#fff; background:var(--pink); border-radius:99px; padding:6px 14px; text-decoration:none; }
+  .fin { text-align:center; font-size:12px; color:#6E6E70; margin-top:30px; line-height:1.9; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="making" id="making">
+    <div class="seal">順</div>
+    <h2 id="mkTitle">命書撰寫中</h2>
+    <p id="mkText">大師正依你的八字逐章撰寫，命書完成後會自動展開。<br>約需一至三分鐘，這頁不用關。</p>
+    <div class="bar"><i></i></div>
+  </div>
+  <div id="book" style="display:none"></div>
+</div>
+<script>
+(function () {
+  var q = new URLSearchParams(location.search);
+  var oid = q.get('o') || '';
+  var NAMES = { hwajeong: '暖陽的感情八字', fox: '墨狐的八字命書', foxdoryeong: '墨狐的八字命書', sinseon: '觀手的手相詳批' };
+  var MASTERS = { hwajeong: '暖陽', fox: '墨狐', foxdoryeong: '墨狐', sinseon: '觀手' };
+  var OTHERS = {
+    hwajeong: [{ slug: 'sinseon', n: '觀手的手相詳批', d: '手相詳批 · 四部十六章', p: 990 }, { slug: 'foxdoryeong', n: '墨狐的八字命書', d: '八字命書 · 四部十九章', p: 1890 }],
+    fox: [{ slug: 'hwajeong', n: '暖陽的感情八字', d: '感情命書 · 四部二十一章', p: 1290 }, { slug: 'sinseon', n: '觀手的手相詳批', d: '手相詳批 · 四部十六章', p: 990 }],
+    foxdoryeong: [{ slug: 'hwajeong', n: '暖陽的感情八字', d: '感情命書 · 四部二十一章', p: 1290 }, { slug: 'sinseon', n: '觀手的手相詳批', d: '手相詳批 · 四部十六章', p: 990 }],
+    sinseon: [{ slug: 'hwajeong', n: '暖陽的感情八字', d: '感情命書 · 四部二十一章', p: 1290 }, { slug: 'foxdoryeong', n: '墨狐的八字命書', d: '八字命書 · 四部十九章', p: 1890 }],
+  };
+  var nt = function (n) { return 'NT$' + n.toLocaleString(); };
+  var slug = 'hwajeong', started = Date.now();
+
+  function esc(s) { var d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
+  function paras(body) {
+    return String(body || '').split(/\n+/).filter(x => x.trim()).map(x => '<p>' + esc(x.trim()) + '</p>').join('');
+  }
+
+  function render(plan) {
+    slug = plan.slug || slug;
+    var facts = plan.facts || {};
+    var b = document.getElementById('book');
+    document.getElementById('making').style.display = 'none';
+    b.style.display = '';
+    document.title = plan.title + ' · 順順命理館';
+
+    // 打码兑现区：teaser 里 202▓▓ 年 ▓▓ 月，这里给完整年份
+    var loveYear = (facts.loveYM || '').split('-')[0];
+    var clashYear = (facts.clashYM || '').split('-')[0];
+    var reveal = '';
+    if (slug === 'hwajeong' && loveYear) {
+      reveal = '<div class="reveal"><div class="cap">試讀裡遮起來的，現在打開</div>' +
+        '<div class="big">你的正緣落在 ' + esc(loveYear) + ' 年' + (facts.loveGanji ? '（' + esc(facts.loveGanji) + '年）' : '') + '</div>' +
+        '<div class="sub">夫妻宮被引動、配偶星到位的那一年。' +
+        (clashYear ? '而 ' + esc(clashYear) + ' 年（' + esc(facts.clashGanji || '') + '年）感情容易起波折——那陣子少說重話，多確認，別自己先退。' : '') +
+        '</div></div>';
+    } else if (facts.maskYear && facts.maskYear.indexOf('▓') === -1) {
+      reveal = '<div class="reveal"><div class="cap">關鍵年份</div><div class="big">' + esc(facts.maskYear) + '</div>' +
+        '<div class="sub">' + MASTERS[slug] + '在試讀裡遮起來的年份，現在打開了。</div></div>';
+    }
+
+    var parts = (plan.parts || []).map(function (part, pi) {
+      var chs = (part.chapters || []).map(function (c, ci) {
+        return '<div class="chap"><div class="ct"><span class="no">' + (pi + 1) + '.' + (ci + 1) + '</span><span class="ti">' + esc(c.title) + '</span></div>' +
+          '<div class="cb">' + paras(c.body) + '</div></div>';
+      }).join('');
+      return '<div class="part"><div class="pn"><span class="num">第' + '一二三四'[pi] + '部</span><span class="ln"></span></div>' +
+        '<h2>' + esc((part.name || '').replace(/^第[一二三四]部\s*/, '')) + '</h2>' +
+        (part.geju ? '<div class="geju">' + esc(part.geju) + '</div>' : '') + chs + '</div>';
+    }).join('');
+
+    var ups = (OTHERS[slug] || []).map(function (o) {
+      return '<div class="up"><div class="l"><div class="n">' + o.n + '</div><div class="d">' + o.d + '</div></div>' +
+        '<div class="r"><div class="p">' + nt(o.p) + '</div><a class="go" href="/bazixiangpi-demo/daoshi/' + (o.slug === 'hwajeong' ? 'hwajeong' : o.slug) + '/">先看試讀</a></div></div>';
+    }).join('');
+
+    b.innerHTML =
+      '<div class="cover"><div class="brand">順順命理館 · 命書</div>' +
+      '<h1>' + esc(plan.title) + '</h1>' +
+      '<div class="who">' + esc(plan.name || '') + '</div>' +
+      '<div class="meta">' + MASTERS[slug] + ' 老師 撰<br>' + new Date(plan.createdAt || Date.now()).toLocaleDateString('zh-TW') + ' 出品</div>' +
+      '<div class="rule"></div></div>' + reveal + parts +
+      '<div class="upsell"><h3>還沒看的兩本</h3>' +
+      '<div class="lead">命書看完的人，通常會想知道另外兩件事：<br>手相會不會改運、八字裡的財從哪來。</div>' + ups + '</div>' +
+      '<div class="fin">本命書由 AI 依傳統命理架構生成，供娛樂與自我探索參考。<br>© 順順命理館</div>';
+    window.scrollTo(0, 0);
+  }
+
+  function poll() {
+    var BASE = window.__SS_BASE || '';
+    fetch(BASE + '/tw/order/book?orderId=' + encodeURIComponent(oid)).then(r => r.json()).then(j => {
+      if (j.status === 'done' && j.plan) return render(j.plan);
+      if (Date.now() - started > 480000) {
+        document.getElementById('mkText').innerHTML = '撰寫時間比預期長一點。<br>請下拉重新整理這頁，命書寫好就會展開。';
+        return;
+      }
+      setTimeout(poll, 5000);
+    }).catch(() => setTimeout(poll, 5000));
+  }
+  // 带订单号按订单取；不带时服务端返回最近一份命书（演示兜底）
+  poll();
+})();
+</script>
+</body>
+</html>

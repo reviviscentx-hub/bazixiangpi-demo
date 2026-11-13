@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head><script>window.__SS_BASE="/bazixiangpi-demo/daoshi";</script><script src="/bazixiangpi-demo/daoshi/bazixiangpi-demo/daoshi/local/demo-data.js"></script><script src="/bazixiangpi-demo/daoshi/bazixiangpi-demo/daoshi/local/boot.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>訂單確認 · 順順命理館</title>
+<style>
+  :root { --bg:#0E0E10; --card:#1A1A1D; --card2:#232327; --pink:#F43F6B; --pink2:#FF6B8F; --gold:#D4AF37; --txt:#FFF9EB; --dim:#9A9AA0; }
+  * { box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; }
+  html,body { background:var(--bg); color:var(--txt); font-family:-apple-system,'PingFang TC','Microsoft JhengHei',sans-serif; }
+  body { min-height:100vh; display:flex; align-items:flex-end; background:
+    radial-gradient(120% 50% at 50% 0%, rgba(244,63,107,.14), transparent 60%), var(--bg); }
+  .wrap { width:100%; max-width:430px; margin:0 auto; padding:24px 16px calc(24px + env(safe-area-inset-bottom)); }
+  .card { background:var(--card); border-radius:20px 20px 0 0; padding:24px 20px; box-shadow:0 -8px 40px rgba(0,0,0,.5); }
+  .head { display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; }
+  .head h1 { font-size:19px; font-weight:700; }
+  .x { color:var(--dim); font-size:22px; line-height:1; cursor:pointer; }
+  .badge { display:inline-block; background:rgba(244,63,107,.12); color:var(--pink2); border:1px solid rgba(244,63,107,.35);
+    border-radius:8px; padding:6px 12px; font-size:13px; font-weight:600; margin-bottom:18px; }
+  .sec { font-size:15px; font-weight:700; margin-bottom:10px; }
+  .opt { background:var(--card2); border:1.5px solid #333; border-radius:14px; padding:14px; margin-bottom:10px;
+    display:flex; justify-content:space-between; align-items:center; cursor:pointer; transition:border-color .15s; }
+  .opt.sel { border-color:var(--pink); background:rgba(244,63,107,.08); }
+  .opt .l { flex:1; }
+  .opt .name { font-size:15px; font-weight:700; }
+  .opt .desc { font-size:12px; color:var(--dim); margin-top:3px; }
+  .opt .desc .tag { display:inline-block; background:rgba(244,63,107,.15); color:var(--pink2); font-size:10px;
+    padding:1px 6px; border-radius:4px; margin-right:6px; font-weight:600; }
+  .opt .r { text-align:right; }
+  .opt .save { font-size:12px; color:var(--pink2); font-weight:700; }
+  .opt .old { font-size:12px; color:var(--dim); text-decoration:line-through; }
+  .opt .price { font-size:18px; font-weight:800; color:var(--pink2); }
+  .opt.single .price { color:var(--txt); }
+  .email { width:100%; background:var(--card2); border:1.5px solid #333; border-radius:12px; padding:13px 14px;
+    color:var(--txt); font-size:15px; margin:14px 0 4px; outline:none; }
+  .email:focus { border-color:#555; }
+  .rows { margin:14px 0 6px; font-size:14px; }
+  .rows .row { display:flex; justify-content:space-between; padding:5px 0; color:var(--dim); }
+  .rows .row.disc span:last-child { color:var(--pink2); font-weight:700; }
+  .rows .row.tot { color:var(--txt); border-top:1px solid #333; margin-top:8px; padding-top:12px; font-size:16px; }
+  .rows .row.tot b { font-size:22px; }
+  .chk { display:flex; align-items:center; gap:8px; font-size:13px; color:var(--dim); margin:12px 0 6px; }
+  .fine { font-size:11px; color:#6E6E74; text-align:center; line-height:1.7; margin:14px 0 18px; }
+  .fine a { color:#8A8A90; }
+  .cta { width:100%; border:none; border-radius:999px; padding:17px; font-size:17px; font-weight:800; color:#fff;
+    background:linear-gradient(180deg, var(--pink2), var(--pink)); cursor:pointer; box-shadow:0 6px 24px rgba(244,63,107,.35); }
+  .cta:disabled { opacity:.5; }
+  .err { color:var(--pink2); font-size:13px; text-align:center; margin-top:10px; min-height:18px; }
+</style>
+</head>
+<body>
+<div class="wrap"><div class="card">
+  <div class="head"><h1 id="t1">訂單確認</h1><span class="x" onclick="history.back()">×</span></div>
+  <div class="badge">比定價省下 <b id="saveBadge">—</b></div>
+  <div class="sec">一起看更划算 🎁</div>
+  <div id="opts"></div>
+  <input class="email" id="email" type="email" placeholder="電子信箱（命書會寄到這裡）">
+  <div class="rows">
+    <div class="row"><span>定價</span><span id="listP">—</span></div>
+    <div class="row disc"><span>折扣</span><span id="discP">—</span></div>
+    <div class="row tot"><span>總金額</span><b id="totP">—</b></div>
+  </div>
+  <label class="chk"><input type="checkbox" checked id="optin"> 願意收到運勢通知（可隨時取消）</label>
+  <p class="fine">數位內容：付款後立即開始撰寫，不適用七日預審期<br>
+    付款即表示您同意 <a href="#">服務條款</a> 與 <a href="#">上越說明</a>，並已閱讀 <a href="#">隱私政策</a> 與 <a href="#">退款政策</a></p>
+  <button class="cta" id="payBtn" disabled>現在就看我的命書</button>
+  <div class="err" id="err"></div>
+</div></div>
+<script>
+(function () {
+  var q = new URLSearchParams(location.search);
+  var oid = q.get('o') || '';
+  var slug = q.get('p') || 'hwajeong';
+  var NAMES = { hwajeong: '暖陽的感情八字', foxdoryeong: '墨狐的八字命書', sinseon: '觀手的手相詳批' };
+  var CTA = { hwajeong: '現在就看我的感情命書', foxdoryeong: '現在就看我的八字命書', sinseon: '現在就看我的手相詳批' };
+  // 三档套餐：单品 / 加第二本（贴价交叉销售，复刻道士定价结构）。键=URL slug，sku=BOOKS 键
+  var PACKS = {
+    hwajeong: [
+      { sku: 'hwajeong', name: '暖陽的感情八字', desc: '感情命書 · 四部二十一章', price: 1290, list: 1690, single: true },
+      { sku: 'hwajeong+sinseon', name: '手相詳批套餐', desc: '感情命書 + 觀手 手相詳批', price: 1590, list: 2280, tag: '推薦' },
+      { sku: 'hwajeong+fox', name: '八字命書套餐', desc: '感情命書 + 墨狐 八字命書', price: 1990, list: 3180, tag: '推薦' },
+    ],
+    foxdoryeong: [
+      { sku: 'fox', name: '墨狐的八字命書', desc: '八字命書 · 四部十九章', price: 1890, list: 2390, single: true },
+      { sku: 'fox+hwajeong', name: '感情命書套餐', desc: '八字命書 + 暖陽 感情八字', price: 2590, list: 3580, tag: '推薦' },
+      { sku: 'fox+sinseon', name: '手相詳批套餐', desc: '八字命書 + 觀手 手相詳批', price: 2490, list: 3380, tag: '推薦' },
+    ],
+    sinseon: [
+      { sku: 'sinseon', name: '觀手的手相詳批', desc: '手相詳批 · 四部十六章', price: 990, list: 1390, single: true },
+      { sku: 'sinseon+hwajeong', name: '感情命書套餐', desc: '手相詳批 + 暖陽 感情八字', price: 1890, list: 2680, tag: '推薦' },
+      { sku: 'sinseon+fox', name: '八字命書套餐', desc: '手相詳批 + 墨狐 八字命書', price: 2590, list: 3780, tag: '推薦' },
+    ],
+  };
+  var packs = PACKS[slug] || PACKS.hwajeong;
+  var sel = 0, busy = false;
+  var nt = function (n) { return 'NT$' + n.toLocaleString(); };
+
+  document.getElementById('t1').textContent = NAMES[slug] + '　訂單確認';
+  document.getElementById('payBtn').textContent = CTA[slug];
+
+  function render() {
+    var box = document.getElementById('opts');
+    box.innerHTML = packs.map(function (p, i) {
+      var save = Math.round((1 - p.price / p.list) * 100);
+      return '<div class="opt' + (p.single ? ' single' : '') + (i === sel ? ' sel' : '') + '" data-i="' + i + '">' +
+        '<div class="l"><div class="name">' + p.name + '</div>' +
+        '<div class="desc">' + (p.tag ? '<span class="tag">' + p.tag + '</span>' : '') + p.desc + '</div></div>' +
+        '<div class="r">' + (p.single ? '' : '<div class="save">' + save + '%</div>') +
+        (p.single ? '' : '<div class="old">' + nt(p.list) + '</div>') +
+        '<div class="price">' + nt(p.price) + '</div></div></div>';
+    }).join('');
+    Array.prototype.forEach.call(box.querySelectorAll('.opt'), function (el) {
+      el.onclick = function () { sel = +el.dataset.i; render(); };
+    });
+    var p = packs[sel];
+    document.getElementById('saveBadge').textContent = nt(p.list - p.price);
+    document.getElementById('listP').textContent = nt(p.list);
+    document.getElementById('discP').textContent = '-' + nt(p.list - p.price);
+    document.getElementById('totP').textContent = nt(p.price);
+    document.getElementById('payBtn').disabled = false;
+  }
+  render();
+
+  // 预填 email：原站表单第 9 步存在 report_funnel_email（boot.js 已同步一份 shunshun_email）
+  try {
+    var em = localStorage.getItem('report_funnel_email') || localStorage.getItem('shunshun_email') || q.get('e') || '';
+    if (em) document.getElementById('email').value = em;
+  } catch (e) {}
+
+  document.getElementById('payBtn').onclick = function () {
+    var err = document.getElementById('err');
+    var em = document.getElementById('email').value.trim();
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)) { err.textContent = '請填寫有效的電子信箱'; return; }
+    if (!oid) { err.textContent = '訂單遺失，請回到試讀頁重新操作'; return; }
+    if (busy) return;
+    busy = true; err.textContent = '';
+    var btn = this; btn.disabled = true; btn.textContent = '付款處理中…';
+    try { localStorage.setItem('shunshun_email', em); } catch (e) {}
+    var BASE = window.__SS_BASE || '';
+    fetch(BASE + '/tw/order/pay', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ orderId: oid, sku: packs[sel].sku, email: em }),
+    }).then(function (r) { return r.json(); }).then(function (j) {
+      if (!j.ok) throw new Error(j.error || '付款失敗');
+      location.href = BASE + '/book/?o=' + encodeURIComponent(oid);
+    }).catch(function (e) {
+      err.textContent = '付款失敗：' + e.message + '（重試一次）';
+      busy = false; btn.disabled = false; btn.textContent = CTA[slug];
+    });
+  };
+})();
+</script>
+</body>
+</html>
